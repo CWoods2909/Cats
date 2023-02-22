@@ -73,12 +73,12 @@ img{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 2%;
-    height: 10vh;
+    height: 18vh;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.224);
 }
 
 #scoreDisplayContainer{
-    padding: 2%;
+    padding-bottom: 2%;
 }
 
 #voteButtonContainer{
@@ -112,4 +112,15 @@ cursor: pointer;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 30px;
     color: rgba(0, 0, 0, 0.805);
+}
+
+#commentContainer{
+    display: flex;
+    justify-content: center;
+    
+}
+
+#commentHeader{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-top: 2%;
 }

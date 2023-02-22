@@ -5,7 +5,7 @@ const initialPageLoad = () =>{
     const dropDown = document.querySelector('.dropdown')
     navContainer.className = 'navBar'
     pageHeader.className = 'header';
-    pageHeader.innerText = ('Kitten Pics');
+    pageHeader.innerText = 'Catstagram';
     document.body.appendChild(navContainer);
     navContainer.append(pageHeader, dropDown);
     
@@ -14,6 +14,7 @@ const initialPageLoad = () =>{
     imageFetch();
     buttons();
     voting();
+    commentCreator();
 }
 
 {/* <TODO>Center header, add some more styling and buttons</TODO> */}
@@ -38,6 +39,10 @@ const imageFetch = async () => {
     const kittenJSON = await imageFetch.json();
     const newCatImg = document.querySelector('.cat');
     newCatImg.setAttribute('src', kittenJSON[0].url)
+
+    const score = document.querySelector('#score');
+    score.innerText = 0;
+    scoreNum = 0
 }
 
 //Button creation ///////////////////////////////////////////
@@ -89,15 +94,92 @@ const voting = () => {
 
 }
 
-// window.onload = async () =>{
-//     //Button click for new cat image
-//     initialPageLoad();
-//     document.getElementById('catButton').addEventListener("click", imageFetch);
-// }
+// getting vote score into container//////////////////////
+let scoreNum = 0;
 
-window.addEventListener("DOMContentLoaded", () => {
-    initialPageLoad();
+const voteScore = () => {
+    const score = document.querySelector("#score")
+    const upVote = document.querySelector('#upvote')
+    const downVote = document.querySelector('#downvote')
+
+    upVote.addEventListener("click", () => {
+        scoreNum += 1;
+        score.innerText = scoreNum;
+    })
+
+    downVote.addEventListener("click", () => {
+        scoreNum -= 1;
+        score.innerText = scoreNum
+    })
+}
+
+// comments ////////////////////////////////////////////////////
+
+const commentCreator = () => {
+    const commentContainer = document.createElement('div');
+    commentContainer.id = 'commentContainer';
+    const commentHeader = document.createElement('h2');
+    commentHeader.id = 'commentHeader';
+    commentHeader.innerText = 'Comments';
+
+    document.body.append(commentHeader, commentContainer);
+    comment();
+}
+
+const comment = () => {
+    const commentContainer = document.querySelector('#commentContainer');
+
+    const comment = document.createElement('div');
+    comment.id = 'comment';
+    commentContainer.appendChild(comment);
+    commentInput();
+}
+
+const commentInput = () =>{
+    const comment = document.querySelector('#comment');
+    const inputBox = document.createElement('form');
+    inputBox.id = 'commentInput';
+
+    const input = document.createElement('input');
+    input.id = 'input';
+    input.placeholder = 'Type comment...';
+
+    const subBtn = document.createElement('button');
+    subBtn.id = 'subBtn';
+    subBtn.innerText = 'Submit Comment';
+
+    inputBox.append(input, subBtn);
+    comment.appendChild(inputBox);
+}
+
+const addComment = (input) => {
+    if(input.length === 0) return;
+    const comment = document.querySelector('#comment');
+    const newComment = document.createElement('p');
+    newComment.innerText = input;
+    comment.appendChild(newComment);
+}
+
+const handleCommentSubmit = () => {
+    const inputBox = document.querySelector('#input')
+    const button = document.querySelector('#subBtn');
+
+    button.addEventListener('click', e =>{
+        e.preventDefault();
+        const inputValue = inputBox.value;
+
+        addComment(inputValue);
+        inputBox.value = '';
+    })
 
     
+}
+
+window.onload = async () =>{
+    //Button click for new cat image
+    initialPageLoad();
+    voteScore();
+    handleCommentSubmit();
+
     document.getElementById('catButton').addEventListener("click", imageFetch);
-})
+}
