@@ -1,0 +1,70 @@
+body{
+    margin: 0;
+    background-color: whitesmoke
+}
+
+h1{
+    font-size: 50px;
+    margin: 0;
+}
+
+img{
+    width: 40vw;
+    height: 40vh;
+}
+.navBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    /* position: relative; */
+}
+
+.dropdown{
+    right: 50%;
+}
+
+#dropdownMenuButton{
+    background-color: cadetblue;
+}
+
+.imageContainer{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.imageCard{
+    width: 50vw;
+    height: 50vh;
+    border: 2px solid rgba(128, 128, 128, 0.451);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2%;
+    box-shadow: 2px 2px 4px rgba(128, 128, 128, 0.388);
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+#catButton{
+    border: none;
+    background-color: cadetblue;
+    height: 5vh;
+    width: 10vw;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px grey;
+    color: white;
+}
+
+#catButton:hover{
+    cursor: pointer;
+}
+
