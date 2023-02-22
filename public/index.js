@@ -17,9 +17,6 @@ const initialPageLoad = () =>{
     commentCreator();
 }
 
-{/* <TODO>Center header, add some more styling and buttons</TODO> */}
-
-
 //Image card ///////////////////////////////////////////////
 const imageCreation = () => {
     const imgCard = document.createElement('div');
@@ -42,7 +39,7 @@ const imageFetch = async () => {
 
     const score = document.querySelector('#score');
     score.innerText = 0;
-    scoreNum = 0
+    scoreNum = 0;
 }
 
 //Button creation ///////////////////////////////////////////
@@ -95,6 +92,8 @@ const voting = () => {
 }
 
 // getting vote score into container//////////////////////
+
+//making variable on root level because im lazy
 let scoreNum = 0;
 
 const voteScore = () => {
@@ -110,6 +109,7 @@ const voteScore = () => {
     downVote.addEventListener("click", () => {
         scoreNum -= 1;
         score.innerText = scoreNum
+        
     })
 }
 
@@ -155,9 +155,12 @@ const commentInput = () =>{
 const addComment = (input) => {
     if(input.length === 0) return;
     const comment = document.querySelector('#comment');
+    const indCommentContainer = document.createElement('div');
+    indCommentContainer.className = 'indCommentContainer';
     const newComment = document.createElement('p');
     newComment.innerText = input;
-    comment.appendChild(newComment);
+    indCommentContainer.appendChild(newComment);
+    comment.appendChild(indCommentContainer);
 }
 
 const handleCommentSubmit = () => {
@@ -175,11 +178,24 @@ const handleCommentSubmit = () => {
     
 }
 
+
+const clearComment = () => {
+    const indCommentContainer = Array.from(document.querySelectorAll('.indCommentContainer'));
+    
+    for(let i = 0; i < indCommentContainer.length; i++){
+        indCommentContainer[i].remove();
+    }
+}
+
+const simpleFunc = () =>{
+    imageFetch();
+    clearComment();
+}
+
 window.onload = async () =>{
-    //Button click for new cat image
     initialPageLoad();
     voteScore();
     handleCommentSubmit();
 
-    document.getElementById('catButton').addEventListener("click", imageFetch);
+    document.getElementById('catButton').addEventListener("click", simpleFunc);
 }
