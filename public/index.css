@@ -1,27 +1,27 @@
 body{
     margin: 0;
-    background-color: whitesmoke
+    background-color: whitesmoke;
 }
 
 h1{
     font-size: 50px;
-    margin: 0;
+    margin-top: 0;
+    margin-left: 5%;
 }
 
 img{
     width: 40vw;
-    height: 40vh;
+    height: 38vh;
 }
 .navBar{
     display: flex;
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid black;
-    /* position: relative; */
 }
 
 .dropdown{
-    right: 50%;
+    right: 55%;
 }
 
 #dropdownMenuButton{
@@ -68,3 +68,48 @@ img{
     cursor: pointer;
 }
 
+#scoreContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    height: 10vh;
+}
+
+#scoreDisplayContainer{
+    padding: 2%;
+}
+
+#voteButtonContainer{
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#upvote, #downvote{
+    width: 40%;
+    height: 5vh;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px grey;
+    color: white;
+    border: none;
+}
+
+#upvote{
+    background-color: forestgreen;
+}
+
+#downvote{
+    background-color: rgb(185, 15, 15);
+}
+
+#upvote:hover, #downvote:hover{
+cursor: pointer;
+}
+
+#scoreTitle,#score{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.805);
+}

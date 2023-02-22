@@ -13,9 +13,10 @@ const initialPageLoad = () =>{
     imageCreation();
     imageFetch();
     buttons();
+    voting();
 }
 
-<TODO>Center header, add some more styling and buttons</TODO>
+{/* <TODO>Center header, add some more styling and buttons</TODO> */}
 
 
 //Image card ///////////////////////////////////////////////
@@ -50,8 +51,53 @@ const buttons = () => {
     buttonContainer.appendChild(newCatButton);
 }
 
-window.onload = async () =>{
-    initialPageLoad();
-    //Button click for new cat image
-    document.getElementById('catButton').addEventListener("click", imageFetch);
+//Upvote and downvote container ////////////////////////////////
+const voting = () => {
+    //score container and display
+    const scoreContainer = document.createElement('div');
+    scoreContainer.id = 'scoreContainer';
+
+    
+    const scoreDisplayContainer = document.createElement('div');
+    scoreDisplayContainer.id = 'scoreDisplayContainer';
+
+    const scoreTitle = document.createElement('span');
+    scoreTitle.id = 'scoreTitle';
+    scoreTitle.innerText = 'Popularity: '
+
+    const score = document.createElement('span');
+    score.id = 'score';
+    score.innerText = '0';
+
+    scoreDisplayContainer.append(scoreTitle, score);
+    scoreContainer.appendChild(scoreDisplayContainer)
+
+    //upvote downvote buttons
+    const voteButtonContainer = document.createElement('div');
+    voteButtonContainer.id = 'voteButtonContainer';
+
+    const upvoteBtn = document.createElement('button');
+    const downvoteBtn = document.createElement('button');
+    upvoteBtn.id = 'upvote';
+    downvoteBtn.id = 'downvote';
+    upvoteBtn.innerText = 'Upvote';
+    downvoteBtn.innerText = 'Downvote';
+
+    voteButtonContainer.append(upvoteBtn, downvoteBtn);
+    scoreContainer.appendChild(voteButtonContainer);
+    document.body.appendChild(scoreContainer);
+
 }
+
+// window.onload = async () =>{
+//     //Button click for new cat image
+//     initialPageLoad();
+//     document.getElementById('catButton').addEventListener("click", imageFetch);
+// }
+
+window.addEventListener("DOMContentLoaded", () => {
+    initialPageLoad();
+
+    
+    document.getElementById('catButton').addEventListener("click", imageFetch);
+})
