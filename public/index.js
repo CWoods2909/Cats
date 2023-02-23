@@ -161,8 +161,10 @@ const addComment = (input) => {
     commentDeleteBtn.id = 'commentDelete';
     commentDeleteBtn.innerText = 'Delete';
     newComment.innerText = input;
+    commentDeleteBtn.addEventListener('click', e => commentDelete(e))
     indCommentContainer.append(newComment, commentDeleteBtn);
     comment.appendChild(indCommentContainer);
+
 }
 // commit submission ///////////////////////////////////////////////////////
 const handleCommentSubmit = () => {
@@ -179,12 +181,12 @@ const handleCommentSubmit = () => {
 }
 
 // comment delete /////////////////////////
-const commentDelete = () => {
-    document.getElementById('commentDelete').addEventListener("click", () =>{
-        const delComment = document.querySelector('indCommentContainer');
-        delComment.remove(); 
-
-    });
+const commentDelete = (e) => {
+    //Not working as intended.  Deleting the first comment even if second or third is pressed.  I believe because there is no unique id between comments.  Will need to fix.
+    const delComment = document.querySelector('.indCommentContainer');
+    // console.log(delComment);
+    // console.log(e.target.id);
+    delComment.remove(); 
     
 }
 
