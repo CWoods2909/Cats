@@ -114,7 +114,6 @@ const voteScore = () => {
 }
 
 // comments ////////////////////////////////////////////////////
-
 const commentCreator = () => {
     const commentContainer = document.createElement('div');
     commentContainer.id = 'commentContainer';
@@ -125,7 +124,7 @@ const commentCreator = () => {
     document.body.append(commentHeader, commentContainer);
     comment();
 }
-
+// comment container ///////////////////////////////////////////
 const comment = () => {
     const commentContainer = document.querySelector('#commentContainer');
 
@@ -134,7 +133,7 @@ const comment = () => {
     commentContainer.appendChild(comment);
     commentInput();
 }
-
+// comment input ////////////////////////////////////////////////
 const commentInput = () =>{
     const comment = document.querySelector('#comment');
     const inputBox = document.createElement('form');
@@ -151,18 +150,21 @@ const commentInput = () =>{
     inputBox.append(input, subBtn);
     comment.appendChild(inputBox);
 }
-
+// helper for adding comments, and checking that comments arent empty//////////////
 const addComment = (input) => {
     if(input.length === 0) return;
     const comment = document.querySelector('#comment');
     const indCommentContainer = document.createElement('div');
     indCommentContainer.className = 'indCommentContainer';
     const newComment = document.createElement('p');
+    const commentDeleteBtn = document.createElement('button');
+    commentDeleteBtn.id = 'commentDelete';
+    commentDeleteBtn.innerText = 'Delete';
     newComment.innerText = input;
-    indCommentContainer.appendChild(newComment);
+    indCommentContainer.append(newComment, commentDeleteBtn);
     comment.appendChild(indCommentContainer);
 }
-
+// commit submission ///////////////////////////////////////////////////////
 const handleCommentSubmit = () => {
     const inputBox = document.querySelector('#input')
     const button = document.querySelector('#subBtn');
@@ -174,11 +176,19 @@ const handleCommentSubmit = () => {
         addComment(inputValue);
         inputBox.value = '';
     })
+}
 
+// comment delete /////////////////////////
+const commentDelete = () => {
+    document.getElementById('commentDelete').addEventListener("click", () =>{
+        const delComment = document.querySelector('indCommentContainer');
+        delComment.remove(); 
+
+    });
     
 }
 
-
+//clear comments on fetch of new cat ////////////////////////////////////////////////
 const clearComment = () => {
     const indCommentContainer = Array.from(document.querySelectorAll('.indCommentContainer'));
     
@@ -187,6 +197,7 @@ const clearComment = () => {
     }
 }
 
+// wanted multiple things to happen on one click so set up simpleFunc ///////////////////
 const simpleFunc = () =>{
     imageFetch();
     clearComment();
@@ -196,6 +207,6 @@ window.onload = async () =>{
     initialPageLoad();
     voteScore();
     handleCommentSubmit();
-
     document.getElementById('catButton').addEventListener("click", simpleFunc);
+
 }
