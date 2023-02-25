@@ -146,7 +146,7 @@ const commentInput = () =>{
     const subBtn = document.createElement('button');
     subBtn.id = 'subBtn';
     subBtn.innerText = 'Submit Comment';
-
+    
     inputBox.append(input, subBtn);
     comment.appendChild(inputBox);
 }
@@ -164,6 +164,7 @@ const addComment = (input) => {
     commentDeleteBtn.addEventListener('click', e => commentDelete(e))
     indCommentContainer.append(newComment, commentDeleteBtn);
     comment.appendChild(indCommentContainer);
+    randColor();
 
 }
 // commit submission ///////////////////////////////////////////////////////
@@ -203,6 +204,17 @@ const clearComment = () => {
 const simpleFunc = () =>{
     imageFetch();
     clearComment();
+}
+
+//Random color picker for comment box /////////////
+const randColor = () => {
+    const colorArr = ['#ff0000', '#00ff00', '#0000ff',
+    '#ff3333', '#ffff00', '#ff6600', '#CD5C5C', '#FA8072','#ff8000', '#bfff00', '#8000ff', '#bf00ff', ''];
+
+    let randColorPicker = colorArr[Math.floor(Math.random() * colorArr.length)];
+
+    const indComment = document.querySelector('#comment');
+    indComment.style.backgroundColor = randColorPicker;
 }
 
 window.onload = async () =>{
